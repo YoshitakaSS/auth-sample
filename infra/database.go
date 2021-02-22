@@ -3,13 +3,13 @@ package infra
 import (
 	"database/sql"
 	"fmt"
-	"os"
 
+	"github.com/YoshitakaSS/go_auth/config"
 	"github.com/go-gorp/gorp"
 )
 
 func initDb() (*gorp.DbMap, error) {
-	db, err := sql.Open("mysql", os.Getenv("dsn"))
+	db, err := sql.Open("mysql", config.DBDSN())
 
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect mysql %w", err)
