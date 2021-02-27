@@ -8,7 +8,8 @@ import (
 	"github.com/go-gorp/gorp"
 )
 
-func initDb() (*gorp.DbMap, error) {
+// InitDB connect MySQL and return gorp mapping object
+func InitDB() (*gorp.DbMap, error) {
 	db, err := sql.Open("mysql", config.DBDSN())
 
 	if err != nil {

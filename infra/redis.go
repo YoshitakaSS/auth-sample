@@ -7,7 +7,8 @@ import (
 	"github.com/gomodule/redigo/redis"
 )
 
-func initRedis() (redis.Conn, error) {
+// InitRedis Connect Redis and Return Redis Connect Info
+func InitRedis() (redis.Conn, error) {
 	redis, err := redis.Dial("tcp", config.RedisDSN())
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect redis %w", err)
