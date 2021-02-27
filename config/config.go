@@ -18,3 +18,13 @@ func IsDev() bool {
 func IsPrd() bool {
 	return os.Getenv("ENV") == "prod"
 }
+
+// HostName return HOSTNAMW
+func HostName() string {
+	return os.Getenv("HOSTNAME")
+}
+
+// Port return PORT
+func Port() string {
+	return os.Getenv("PORT")
+}
