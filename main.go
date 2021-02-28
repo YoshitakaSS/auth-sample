@@ -20,14 +20,17 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	defer dbMap.Db.Close()
 
 	redis, err := infra.InitRedis()
 	if err != nil {
 		fmt.Println(err)
 	}
-	defer redis.Close()
 
 	s := web.NewServer()
 	s.Start(fmt.Sprintf("%s:%s", config.HostName(), config.Port()))
+
+	defer func() {
+		dbMap.Db.Close()
+		redis.Close()
+	}()
 }
