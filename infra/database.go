@@ -6,6 +6,7 @@ import (
 
 	"github.com/YoshitakaSS/go_auth/config"
 	"github.com/go-gorp/gorp"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 // InitDB connect MySQL and return gorp mapping object
