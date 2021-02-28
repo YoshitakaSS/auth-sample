@@ -11,22 +11,27 @@ services:
 
   redis:
       image: "redis:latest"
+      container_name: "auth_redis"
       networks: 
         - auth
 
   mysql:
-    build: 
-      context: ./docker/mysql
+    image: mysql:8.0
     container_name: "auth_db"
     volumes:
+      - ms-auth-store:/var/lib/mysql
       - ./logs/mysql:/var/log/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     environment :
       - MYSQL_DATABASE=${DB_NAME}
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASS}
       - MYSQL_ROOT_PASSWORD=${DB_PASS}
-      - "TZ=Asia/Tokyo"
+      - TZ=${TZ}
     ports:
       - ${DB_PORT}:3306
     networks: 
       - auth
+
+volumes:
+  ms-auth-store:
