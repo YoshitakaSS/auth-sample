@@ -1,0 +1,115 @@
+openapi: "3.0.0"
+info:
+  title: "ms_auth"
+  version: "1.1.0"
+
+servers:
+  - url: https://****.com/api/
+    description: "production server"
+
+paths:
+  /user/register:
+    post:
+      summary: "ユーザー登録"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegsiterUserRequest"
+      responses:
+        201:
+          description: "ユーザー登録成功"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserSuccessResponse"
+        404:
+          description: "不正なリクエスト"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        409:
+          description: "同一のメールアドレスの場合"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /user/login:
+    post:
+      summary: "ユーザーログイン"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginUserRequest"
+      responses:
+        200:
+          description: "ユーザーログイン成功"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserSuccessResponse"
+        404:
+          description: "ユーザーログイン失敗"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    RegsiterUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          example: "hogehoge@example.com"
+        userName:
+          type: string
+          example: "hoge"
+        birthDate:
+          type: string
+          example: "2020-01-01"
+          description: "Y-m-d方式"
+        password:
+          type: string
+          example: "password"
+        gender:
+          type: integer
+          example: 1
+          description: "1: 男 2: 女 3: その他"
+    
+    LoginUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          example: "hogehoge@example.com"
+        password:
+          type: string
+          example: "password"
+        remember:
+          type: boolean
+          example: true
+      
+    UserSuccessResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "success"
+
+    FormError:
+      type: object
+      properties:
+        messages:
+          type: array
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: invalid parameter
