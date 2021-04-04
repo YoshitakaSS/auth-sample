@@ -7,15 +7,16 @@ type User struct {
 	Email     string
 	userName  *vo.UserName
 	birthDate *vo.UserBirthDate
-	Password  string
+	password  *vo.UserPassword
 	Gender    int
 }
 
 // NewUser はUserEntityを返します
-func NewUser(u *vo.UserName, b *vo.UserBirthDate) (*User, error) {
+func NewUser(u *vo.UserName, b *vo.UserBirthDate, p *vo.UserPassword) (*User, error) {
 
 	return &User{
 		userName:  u,
 		birthDate: b,
+		password:  p,
 	}, nil
 }
