@@ -4,19 +4,20 @@ import "github.com/YoshitakaSS/go_auth/domain/vo"
 
 // User はユーザー情報を表す構造体
 type User struct {
-	Email     string
-	userName  *vo.UserName
-	birthDate *vo.UserBirthDate
-	password  *vo.UserPassword
-	Gender    int
+	email    *vo.UserEmail
+	name     *vo.UserName
+	birth    *vo.UserBirthDate
+	password *vo.UserPassword
+	gender   *vo.UserGenderID
 }
 
 // NewUser はUserEntityを返します
-func NewUser(u *vo.UserName, b *vo.UserBirthDate, p *vo.UserPassword) (*User, error) {
-
+func NewUser(e *vo.UserEmail, u *vo.UserName, b *vo.UserBirthDate, p *vo.UserPassword, g *vo.UserGenderID) *User {
 	return &User{
-		userName:  u,
-		birthDate: b,
-		password:  p,
-	}, nil
+		email:    e,
+		name:     u,
+		birth:    b,
+		password: p,
+		gender:   g,
+	}
 }
