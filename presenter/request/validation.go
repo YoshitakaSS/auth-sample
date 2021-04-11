@@ -5,12 +5,12 @@ import (
 	"github.com/labstack/echo"
 )
 
-// RequestValidator
+// RequestValidator はValidatitorのポインタを持った構造体
 type RequestValidator struct {
 	validator *validator.Validate
 }
 
-// NewValidator
+// NewValidator RequestValidatorのポインタを返却
 func NewValidator() echo.Validator {
 	return &RequestValidator{validator: validator.New()}
 }

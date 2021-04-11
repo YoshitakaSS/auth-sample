@@ -24,7 +24,7 @@ func NewServer() *echo.Echo {
 	// api.Use(middleware.BodyDump(bodyDumpHandler))
 
 	// ユーザー登録
-	api.POST("/user/regsiter", func(c echo.Context) error {
+	api.POST("/user/regsiter", func(c echo.Context) (err error) {
 		return controller.UserRegister(c)
 	})
 
