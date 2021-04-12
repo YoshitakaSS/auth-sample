@@ -8,7 +8,7 @@ import (
 )
 
 // UserRegister は User登録を行うContorller
-func UserRegister(c echo.Context) error {
+func RegisterUser(c echo.Context) error {
 	r := &request.UserRegisterRequest{}
 
 	// validate := validator.New()
