@@ -23,17 +23,17 @@ func NewServer() *echo.Echo {
 
 	// api.Use(middleware.BodyDump(bodyDumpHandler))
 
-	api.GET("/user/:id", func(c echo.Context) (err error) {
-		return controller.FindUser(c)
+	api.GET("/users/:", func(c echo.Context) (err error) {
+		return controller.FindUserByName(c)
 	})
 
 	// ユーザー登録
-	api.POST("/user/regsiter", func(c echo.Context) (err error) {
+	api.POST("/users/regsiter", func(c echo.Context) (err error) {
 		return controller.RegisterUser(c)
 	})
 
 	// ユーザーログイン
-	api.POST("/user/login", func(c echo.Context) error {
+	api.POST("/users/login", func(c echo.Context) error {
 		return c.String(http.StatusOK, "ユーザーログイン用Route")
 	})
 
