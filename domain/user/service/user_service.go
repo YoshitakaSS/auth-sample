@@ -1,29 +1,32 @@
 package service
 
 import (
-	"errors"
-
-	"github.com/YoshitakaSS/go_auth/domain/user/repository"
 	"github.com/YoshitakaSS/go_auth/domain/user/vo"
+	"github.com/YoshitakaSS/go_auth/infra/query"
 )
 
 // UserDomainService はドメインサービスの構造体
 type UserDomainService struct {
-	repo repository.UserRepository
+	userQs *query.UserQueryService
 }
 
 // NewUserDomainService はUserDomainServiceの構造体を返す
-func NewUserDomainService(repo *repository.UserRepository) error {
-	return &UserDomainService{repo: repo}
+func NewUserDomainService(userQs *query.UserQueryService) *UserDomainService {
+	return &UserDomainService{userQs: userQs}
 }
 
 // IsExists はユーザーが存在するか判定する
-func (s *UserDomainService) IsExists(name *vo.UserName) error {
-	_, ok := s.repo.Find(name)
-
-	if !ok {
-		return errors.New("not find this user")
+func (s *UserDomainService) IsExists(name string) bool {
+	userName, err := vo.NewUserName(name)
+	if err != nil {
+		return false
 	}
 
-	return ok
+	userDto, _ := s.userQs.FindByUserName(userName)
+
+	if userDto == nil {
+		return false
+	}
+
+	return true
 }
