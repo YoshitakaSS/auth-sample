@@ -23,8 +23,8 @@ func NewServer() *echo.Echo {
 
 	// api.Use(middleware.BodyDump(bodyDumpHandler))
 
-	api.GET("/users/:", func(c echo.Context) (err error) {
-		return controller.FindUserByName(c)
+	api.GET("/users/:user_name", func(c echo.Context) (err error) {
+		return controller.FindUser(c)
 	})
 
 	// ユーザー登録

@@ -3,9 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/YoshitakaSS/go_auth/config"
 	"github.com/YoshitakaSS/go_auth/infra"
-	"github.com/YoshitakaSS/go_auth/web"
 	"github.com/joho/godotenv"
 )
 
@@ -25,9 +23,6 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
-	s := web.NewServer()
-	s.Start(fmt.Sprintf("%s:%s", config.HostName(), config.Port()))
 
 	defer func() {
 		dbMap.Db.Close()

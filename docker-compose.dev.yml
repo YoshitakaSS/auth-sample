@@ -9,7 +9,7 @@ networks:
 ############
 services:
 
-  redis:
+  auth-sample-redis:
       image: "redis:latest"
       container_name: "auth_redis"
       ports:
@@ -17,7 +17,7 @@ services:
       networks: 
         - auth
 
-  mysql:
+  auth-sample-mysql:
     image: mysql:8.0
     container_name: "auth_db"
     volumes:

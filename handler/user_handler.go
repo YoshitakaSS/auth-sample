@@ -4,11 +4,16 @@ import (
 	"net/http"
 
 	"github.com/YoshitakaSS/go_auth/presenter/request"
+	"github.com/YoshitakaSS/go_auth/usecase"
 	"github.com/labstack/echo"
 )
 
+type UserContorller struct {
+	ufuc *usecase.UserFindUseCase
+}
+
 // UserRegister は User登録を行うContorller
-func RegisterUser(c echo.Context) error {
+func (c *UserContorller) RegisterUser(c echo.Context) error {
 	r := &request.UserRegisterRequest{}
 
 	// validate := validator.New()
@@ -22,4 +27,10 @@ func RegisterUser(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, r)
+}
+
+func (c *userController) FindUser(c echo.Context) error {
+	user_name := c.ParamValues()
+
+	return c.JSON(http.StatusOK, user_name)
 }
