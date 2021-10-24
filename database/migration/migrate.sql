@@ -1,7 +1,7 @@
 DROP TABLE `users` IF EXISTS `users`
 
 CREATE TABLE `users` (
-  `user_id` bigint COLLATE utf8mb4_bin NOT NULL COMMENT 'ユーザID',
+  `user_id` bigint COLLATE utf8mb4_bin AUTO_INCREMENT NOT NULL COMMENT 'ユーザID',
   `name` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'ユーザー名',
   `email` varchar(255) COLLATE utf8mb4_bin NOT NULL COMMENT 'メールアドレスを暗号化した文字列',
   `birth_date` date COLLATE utf8mb4_bin NOT NULL COMMENT '生年月日',
