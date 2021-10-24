@@ -21,8 +21,6 @@ func NewServer() *echo.Echo {
 	// API Group
 	api := e.Group("/api")
 
-	// api.Use(middleware.BodyDump(bodyDumpHandler))
-
 	api.GET("/users/:user_name", func(c echo.Context) (err error) {
 		return controller.FindUser(c)
 	})
@@ -32,15 +30,5 @@ func NewServer() *echo.Echo {
 		return controller.RegisterUser(c)
 	})
 
-	// ユーザーログイン
-	api.POST("/users/login", func(c echo.Context) error {
-		return c.String(http.StatusOK, "ユーザーログイン用Route")
-	})
-
 	return e
 }
-
-// func bodyDumpHandler(c echo.Context, reqBody, resBody []byte) {
-// 	fmt.Printf("Request Body: %v\n", string(reqBody))
-// 	fmt.Printf("Response Body: %v\n", string(resBody))
-// }
