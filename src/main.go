@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/YoshitakaSS/go_auth/infra"
+	"github.com/YoshitakaSS/go_auth/src/config"
 	"github.com/joho/godotenv"
 )
 
@@ -14,12 +14,12 @@ func main() {
 		panic("Error loading .env file")
 	}
 
-	dbMap, err := infra.InitDB()
+	dbMap, err := config.InitDB()
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	redis, err := infra.InitRedis()
+	redis, err := config.InitRedis()
 	if err != nil {
 		fmt.Println(err)
 	}

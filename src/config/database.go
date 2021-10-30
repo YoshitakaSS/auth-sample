@@ -1,17 +1,16 @@
-package infra
+package config
 
 import (
 	"database/sql"
 	"fmt"
 
-	"github.com/YoshitakaSS/go_auth/config"
 	"github.com/go-gorp/gorp"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 // InitDB connect MySQL and return gorp mapping object
 func InitDB() (*gorp.DbMap, error) {
-	db, err := sql.Open("mysql", config.DBDSN())
+	db, err := sql.Open("mysql", DBDSN())
 
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect mysql %w", err)
